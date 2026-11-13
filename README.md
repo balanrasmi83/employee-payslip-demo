@@ -17,3 +17,8 @@ Development status: In Progress
 Implementation:
 - Added payslip download functionality.
 - Added a download action for employees.
+
+Jira Issue: PAY-1
+Feature: Monthly Payslip Download
+Development Status: In Progress
+Release: 1.0.0
