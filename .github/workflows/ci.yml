@@ -1,0 +1,24 @@
+name: Payslip Application CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get source code
+        uses: actions/checkout@v4
+
+      - name: Check payslip webpage exists
+        run: test -f index.html
+
+      - name: Validate HTML file is not empty
+        run: test -s index.html
+
+      - name: CI successful
+        run: echo "Payslip application validation passed!"
