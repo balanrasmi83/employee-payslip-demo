@@ -7,3 +7,13 @@ the Jira and GitHub development workflow.
 - Employee can view monthly payslips.
 - Employee can download payslips.# employee-payslip-demo
 Demo application for Jira and GitHub workflow
+
+## Development Update – PAY-12
+
+Feature: Download Monthly Payslip
+
+Development status: In Progress
+
+Implementation:
+- Added payslip download functionality.
+- Added a download action for employees.
