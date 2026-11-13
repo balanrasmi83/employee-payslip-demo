@@ -18,7 +18,7 @@ jobs:
         run: test -f index.html
 
       - name: Validate HTML file is not empty
-        run: test -s index.html
+        run: run: test -s missing.html
 
       - name: CI successful
         run: echo "Payslip application validation passed!"
