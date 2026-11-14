@@ -22,3 +22,13 @@ Jira Issue: PAY-1
 Feature: Monthly Payslip Download
 Development Status: In Progress
 Release: 1.0.0
+
+## Development Update – PAY-2
+
+Jira Issue: PAY-2
+Feature: View Monthly Payslip
+Development Status: In Progress
+
+Implementation:
+- Added the view monthly payslip requirement to the development notes.
+- Employees will be able to open and review their monthly salary details in the portal.
