@@ -32,3 +32,13 @@ Development Status: In Progress
 Implementation:
 - Added the view monthly payslip requirement to the development notes.
 - Employees will be able to open and review their monthly salary details in the portal.
+
+## Development Update – PAY-3
+
+Jira Issue: PAY-3
+Feature: View Previous Months' Payslips
+Development Status: In Progress
+
+Implementation:
+- Added the requirement to access payslips from previous months.
+- Employees will be able to refer to their past salary details in the portal.
