@@ -1,69 +1,70 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Payslip Portal</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f4f8;
-            padding: 40px;
-        }
-        .payslip {
-            max-width: 500px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-        }
-        h1 {
-            color: #2457a7;
-            text-align: center;
-        }
-        .row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
-        }
-        button {
-            width: 100%;
-            padding: 14px;
-            margin-top: 25px;
-            background: #2457a7;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Payslip Portal</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f2f4f8; padding: 40px 16px; }
+    .payslip { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 12px; }
+    h1 { color: #2457a7; text-align: center; }
+    label { display: block; margin: 20px 0 8px; font-weight: bold; }
+    select { width: 100%; padding: 12px; border: 1px solid #bbb; border-radius: 6px; font-size: 16px; }
+    .row { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid #eee; }
+    button { width: 100%; padding: 14px; margin-top: 25px; background: #2457a7; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; }
+    button:hover { background: #194582; }
+    .hint { color: #555; font-size: 14px; margin-top: 8px; }
+    @media print {
+      body { background: white; padding: 0; }
+      .payslip { box-shadow: none; }
+      label, select, .hint, button { display: none; }
+    }
+  </style>
 </head>
 <body>
-    <div class="payslip">
-        <h1>Monthly Payslip</h1>
-        <p><strong>Employee:</strong> Demo Employee</p>
-        <p><strong>Month:</strong> October 2026</p>
+  <main class="payslip">
+    <h1>Employee Payslip Portal</h1>
+    <p><strong>Employee:</strong> Demo Employee</p>
 
-        <div class="row">
-            <span>Basic Salary</span>
-            <span>₹40,000</span>
-        </div>
-        <div class="row">
-            <span>Allowances</span>
-            <span>₹10,000</span>
-        </div>
-        <div class="row">
-            <span>Deductions</span>
-            <span>₹5,000</span>
-        </div>
-        <div class="row">
-            <strong>Net Salary</strong>
-            <strong>₹45,000</strong>
-        </div>
+    <label for="monthSelect">Select payslip month</label>
+    <select id="monthSelect" aria-label="Select a payslip month">
+      <option value="2026-10">October 2026 (Current)</option>
+      <option value="2026-09">September 2026</option>
+      <option value="2026-08">August 2026</option>
+    </select>
+    <p class="hint">Choose a month to view that month's payslip.</p>
 
-        <button onclick="window.print()">Download Payslip</button>
-    </div>
+    <section aria-live="polite">
+      <h2 id="payslipMonth">October 2026</h2>
+      <div class="row"><span>Basic Salary</span><span id="basicSalary">₹40,000</span></div>
+      <div class="row"><span>Allowances</span><span id="allowances">₹10,000</span></div>
+      <div class="row"><span>Deductions</span><span id="deductions">₹5,000</span></div>
+      <div class="row"><strong>Net Salary</strong><strong id="netSalary">₹45,000</strong></div>
+    </section>
+
+    <button type="button" onclick="window.print()">Download Payslip</button>
+  </main>
+
+  <script>
+    const payslips = {
+      "2026-10": { month: "October 2026", basic: 40000, allowances: 10000, deductions: 5000 },
+      "2026-09": { month: "September 2026", basic: 39000, allowances: 9000, deductions: 5000 },
+      "2026-08": { month: "August 2026", basic: 38000, allowances: 9000, deductions: 4500 }
+    };
+
+    const monthSelect = document.getElementById("monthSelect");
+    const currency = amount => "₹" + amount.toLocaleString("en-IN");
+
+    function showPayslip(monthKey) {
+      const payslip = payslips[monthKey];
+      document.getElementById("payslipMonth").textContent = payslip.month;
+      document.getElementById("basicSalary").textContent = currency(payslip.basic);
+      document.getElementById("allowances").textContent = currency(payslip.allowances);
+      document.getElementById("deductions").textContent = currency(payslip.deductions);
+      document.getElementById("netSalary").textContent = currency(payslip.basic + payslip.allowances - payslip.deductions);
+    }
+
+    monthSelect.addEventListener("change", event => showPayslip(event.target.value));
+  </script>
 </body>
 </html>
